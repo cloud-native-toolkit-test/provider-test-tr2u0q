@@ -1,0 +1,10 @@
+namespace:
+  createOperatorGroup: true
+  argocdNamespace: openshift-gitops
+  gitopsConfig:
+    create: false
+    applicationBasePath: ''
+    host: ''
+    org: ''
+    repo: ''
+    branch: ''
