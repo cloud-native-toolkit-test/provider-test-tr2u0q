@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: namespace-provider-test
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: default
+    server: https://kubernetes.default.svc
+  project: 1-infrastructure
+  source:
+    path: payload/1-infrastructure/namespace/provider-test/namespace
+    repoURL: https://github.com/cloud-native-toolkit-test/provider-test-tr2u0q.git
+    targetRevision: main
+    helm:
+      valueFiles:
+        - .tmp/namespace/namespace/provider-test/values.yaml
+      releaseName: provider-test
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+  ignoreDifferences: []
